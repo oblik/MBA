@@ -132,15 +132,19 @@
                                         <div class="col-lg-3 col-md-6 col-12 my-2">
                                             <!-- Card -->
                                             <div class="card card-hover">
-                                             
-                                                <img src="{{ Storage::url($value->podcast_thumbnail_file) }}" 
+                                                @php $LINK = route('start-course-panel',['course_id'=>base64_encode($value->course_id)]); @endphp
+                                                {{-- <img src="{{ Storage::url($value->podcast_thumbnail_file) }}" 
                                                         alt="Trailer Thumbnail" 
                                                         style="width: 100%; height: 100%; object-fit: cover;"  
-                                                        class="openVideoModal"
+                                                        class="openVideoModal" --}}
                                                         {{-- data-video-url="{{ Storage::url($value->bn_video_url_id) }}" --}}
-                                                        data-video-url ="https://iframe.mediadelivery.net/embed/{{env('AWARD_LIBRARY_ID')}}/{{ $value->bn_video_url_id }}?autoplay=true" 
+                                                        {{-- data-video-url ="https://iframe.mediadelivery.net/embed/{{env('AWARD_LIBRARY_ID')}}/{{ $value->bn_video_url_id }}?autoplay=true" 
                                                         
-                                                        />
+                                                        /> --}}
+                                                        <a target="_blank" href="{{$LINK}}" class="text-inherit" ><img
+                                                            src="{{ Storage::url($value->podcast_thumbnail_file) }}"
+                                                            alt="course" class="card-img-top img-fluid" max-height='10px' style="object-fit: cover;"></a>
+                                               
 
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between align-items-center mb-3">

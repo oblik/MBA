@@ -567,7 +567,14 @@ if (!function_exists('isImageCorrupt')) {
                 if (empty($fileContent)) {
                     $fileCorrupt = true; // If the file is empty, it's considered corrupt
                 }
-                // As per ankita's Suggestion (17-02-2025)
+            }else if ($mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                $fileCorrupt = false;
+            }else if ($mimeType === 'application/vnd.ms-excel1'){
+                $fileCorrupt = false;
+            }else if ($mimeType === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+                $fileCorrupt = false;
+            }else if ($mimeType === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet1") {
+                $fileCorrupt = false;
             } else {
                 // If the MIME type is not PDF, then the file is corrupt
                 $fileCorrupt = true;

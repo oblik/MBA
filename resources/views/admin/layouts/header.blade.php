@@ -360,7 +360,7 @@
                     </li> --}}
                     
                     <!-- Nav item -->
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/section*') || request()->is('admin/videos*') || request()->is('admin/quiz*') || request()->is('admin/edit-quiz-get-data*') || request()->is('admin/journal-articles') || request()->is('admin/get-journal-article-edit*') ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
                             data-bs-target="#course-content" 
                             aria-expanded="{{ request()->is('admin/section*') ? 'true' : 'false' }}" 
@@ -377,16 +377,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('admin/videos*') ? 'active' : '' }}" href="{{ route('admin.course.videos') }}">Video</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link {{ request()->is('admin/quiz') || request()->is('admin/edit-quiz-get-data*') ? 'active' : '' }}" href="{{ route('admin.course.quiz') }}">Quiz</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('admin/journal-articles') || request()->is('admin/get-journal-article-edit*') ? 'active' : '' }}" href="{{ route('admin.course.journal-articles') }}">Document
                                         </a>
                                 </li>
                             </ul>
                         </div>
-                    </li> --}}
+                    </li> 
 
                     <!-- Nav item -->
 

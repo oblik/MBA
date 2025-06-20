@@ -102,6 +102,10 @@
                                                         @if (strtolower($fileExtension) === 'pdf')
                                                             <a href="{{ Storage::url($articleData[0]['file']) }}" class="btn btn-primary" target="_blank"> See Document <i
                                                                 class="fe fe-eye"></i></a>
+                                                        @elseif(strtolower($fileExtension) === 'docx')
+                                                            <a onclick="DocxContentDownload('{{ $articleData[0]['file'] }}', '{{ $articleData[0]['doc_file_name'] }}')" class="btn btn-primary" target="_blank">
+                                                            Download Document <i class="fe fe-eye"></i>
+                                                            </a>
                                                         @else
                                                             <a onclick="ExcelContentDownload('{{ $articleData[0]['file'] }}', '{{ $articleData[0]['doc_file_name'] }}')" class="btn btn-primary" target="_blank">
                                                                 See Document <i class="fe fe-eye"></i>
@@ -123,10 +127,10 @@
                                                         <div class="mb-3">
                                                             <div class="custom-file-container mb-2">
                                                                 <label class="input-container">
-                                                                    <input accept=".pdf,.xls,.xlsx"  name="docsFile" aria-label="Choose File" class="form-control docsFile" id="inputLogo" type="file" draggable="false">
+                                                                    <input accept=".pdf,.xls,.xlsx.,.docx"  name="docsFile" aria-label="Choose File" class="form-control docsFile" id="inputLogo" type="file" draggable="false">
                                                                     <span class="input-visible">{{ isset($articleData[0]['doc_file_name']) ? $articleData[0]['doc_file_name'] : 'Choose file...' }} <span class="browse-button">Upload</span></span>
                                                                 </label>
-                                                                <small > ( PDF,EXCEL Max Size: 5 MB)</small>
+                                                                <small > ( PDF,DOCX Max Size: 5 MB)</small>
                                                                 <div class="invalid-feedback" id="journal_file_error">Please upload file.</div>
                                                             </div>
                                                             {{-- <div class="input-group mb-1">
@@ -187,6 +191,16 @@
         var a = document.createElement('a');
         a.href = newUrl;
         a.download = file_name; // Set the desired file name for the download
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+    function DocxContentDownload(file,file_name) {
+        var newUrl = "{{ Storage::url('') }}" + file;
+        var a = document.createElement('a');
+        a.href = newUrl;
+        // a.download = file_name; // Set the desired file name for the download
+        a.download = newUrl.split('/').pop();
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

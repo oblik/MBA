@@ -398,7 +398,7 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth', 'roles:user', 'ver
 
     });
     Route::get('e-portfolio', [CourseController::class, 'eportfolioData'])->name('e-portfolio');
-    Route::get('student-award-course-panel/{course_id}', [CourseController::class, 'getAwardCourseData'])->name('start-course-panel')->middleware('check.enrollment');
+    Route::get('student-award-course-panel/{course_id}', [CourseController::class, 'getAwardCourseData'])->name('start-course-panel');
     Route::view('mock-interview', 'frontend/exam/mock-interview')->name('mock-interview');
     Route::get('student-master-course-panel/{course_id}', [CourseController::class, 'getMasterCourseData'])->name('master-course-panel')->middleware(['check.enrollment', 'check.optional_course']);
 

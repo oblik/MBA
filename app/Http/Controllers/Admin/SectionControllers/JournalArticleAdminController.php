@@ -32,7 +32,7 @@ class JournalArticleAdminController extends Controller
                 ];
             } else {
                 $validate_rules = [
-                    'docsFile' => 'required|mimes:pdf,xls,xlsx|max:5120',
+                    'docsFile' => 'required|mimes:pdf,xls,xlsx,docx|max:5120',
                     'journal_title' => 'required|string|max:255|min:3',
                 ];
                 $custom_messages = [
