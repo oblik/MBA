@@ -420,11 +420,11 @@ $(document).ready(function () {
                                 "active"
                             );
 
-                            $("#course-content-4")
+                            $("#section-selection-3")
                                 .removeClass("dstepper-none")
                                 .addClass("active");
                             $(
-                                '.step[data-target="#course-content-4"]'
+                                '.step[data-target="#section-selection-3"]'
                             ).addClass("active");
                         });
                         $(".errors").remove();

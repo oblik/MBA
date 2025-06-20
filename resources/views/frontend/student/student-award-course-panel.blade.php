@@ -332,7 +332,38 @@ $VideoData = getData('course_modules_videos', ['bn_collection_id', 'bn_video_url
                             {{-- <span></span> --}}
                         </div>
                     </a>
-                    
+                    @elseif($extensionFile['extension']  == 'docx')
+                    <a class=" mb-2 d-flex justify-content-between align-items-center text-inherit studentAwardCourseTitle tab-link"
+                    id="resource-docs-tab"
+                    data-bs-toggle="pill"
+                    onclick="DocsContentDisplay('{{ $docs['file'] }}','{{ $docs['docs_title'] }}','{{$docs['id']}}','{{ $docs['doc_file_name'] }}')"
+                    href="#resource-docs"
+                    role="tab"
+                    aria-controls="resource-docs"
+                    aria-selected="false">
+                    <div class="d-flex align-items-center">
+                        <span
+                            class="icon-shape text-primary icon-sm rounded-circle me-2 bg-green">
+                            @if(!empty($CourseIconData[0]->watch_content_id))
+                            @php  $Watcharray = explode(",", $CourseIconData[0]->watch_content_id); @endphp
+                                @if (in_array('do_'.$docs['id'], $Watcharray))
+                                    <i id="play-pause-icon-{{ $docs['id'] }}" data-filetype="excel"
+                                    class="bi bi-check2 nav-icon fs-6 color-blue playIconStudentCoursePanel"></i>
+                                @else
+                                    <i id="play-pause-icon-{{ $docs['id'] }}" data-filetype="excel" class="bi bi-filetype-exe nav-icon fs-6 color-blue playIconStudentCoursePanel"></i>
+                                @endif
+                            @else
+                                <i id="play-pause-icon-{{ $docs['id'] }}" data-filetype="excel"
+                                    class="bi bi-filetype-exe nav-icon fs-6 color-blue playIconStudentCoursePanel"></i>
+                            @endif
+                        </span>
+                      
+                        <span class="d-inline-block preview-course-heading" style="font-size: 13px">{{ isset($docs['docs_title']) ? htmlspecialchars_decode($docs['docs_title']) : '' }}</span>
+                    </div>
+                    <div class="text-truncate">
+                        {{-- <span></span> --}}
+                    </div>
+                </a>
                     @else
                     <a class=" mb-2 d-flex justify-content-between align-items-center text-inherit studentAwardCourseTitle tab-link"
                     id="resource-tab"
@@ -538,6 +569,17 @@ $i++;
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="resource-docs" role="tabpanel"
+                                aria-labelledby="resource-docs-tab">
+                                <!-- Video -->
+                                <div class="embed-responsive position-relative w-100 d-block overflow-hidden p-0"
+                                    style="height: 100vh">
+                                    <div  class="d-flex justify-content-center align-items-center h-100 flex-column">
+                                        <h4 class="text-center">Please download the Docs file below to view its content.</h4>
+                                        <a id="docsDisplay" class="btn btn-primary mt-2">Downlaod Docs File <i class="bi bi-download"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -718,6 +760,8 @@ $i++;
         $('#course-project').show();
 		$('#course-project').addClass('active show')
         $("#resource-excel").hide();
+        $("#resource-docs").hide();
+
         $("#videoDisply").addClass("videoDisply_"+videoId);
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
@@ -1180,6 +1224,8 @@ $i++;
         $('.quizTab').removeClass("active show"); 
         $('#resource').show(); 
         $("#resource-excel").hide();
+        $("#resource-docs").hide();
+
         var course_id = "<?php echo base64_encode($courseDetails[0]['course'][0]['id']); ?>";
 
         $.ajax({
@@ -1260,6 +1306,8 @@ $i++;
         $('.quizTab').removeClass("active show"); 
         $('#resource').hide(); 
         $("#resource-excel").show();
+        $("#resource-docs").hide();
+
             const currentTabId = doid; // Get the ID of the currently clicked tab
             var iconElement = $("#play-pause-icon-" + currentTabId);
             console.log("sdfsdf");
@@ -1391,6 +1439,154 @@ $i++;
                 },
             });
     }
+    function DocsContentDisplay(file, title,doid,file_name) {
+        if(playerInstance){
+            playerInstance.pause();
+        }
+        var newUrl = "{{ Storage::url('') }}" + file + "#toolbar=0&navpanes=0&scrollbar=0";
+        $('#docsDisplay')
+            .attr("href", newUrl)
+            .attr("download", file_name);
+        $('#course-project').hide();
+        $("#course-project").removeClass("active show");
+        $('.quizTab').removeClass("active show"); 
+        $('#resource').hide(); 
+        $("#resource-excel").hide();
+        $("#resource-docs").show();
+
+            const currentTabId = doid; // Get the ID of the currently clicked tab
+            var iconElement = $("#play-pause-icon-" + currentTabId);
+            console.log("sdfsdf");
+            if (iconElement.hasClass("bi-check2")) {
+                iconElement.removeClass("bi-check2").addClass("bi-filetype-exe");
+            } else if (iconElement.hasClass("bi-filetype-exe")) {
+                iconElement.removeClass("bi-filetype-exe").addClass("bi-check2");
+            }
+            if (previousTabId) {
+                console.log(previousTabId);
+                console.log("Previous Tab ID:", previousTabId);
+
+                var iconElement = $("#play-pause-icon-" + previousTabId);
+                var filetype = iconElement.data('filetype');
+                if (iconElement.hasClass("bi-play-fill")) {
+                    console.log("Found bi-play-fill class");
+                    iconElement.removeClass("bi-play-fill").addClass("bi-pause-fill");
+                } else if (iconElement.hasClass("bi-pause-fill")) {
+                    console.log("Found bi-pause-fill class testing");
+                    iconElement.removeClass("bi-pause-fill").addClass("bi-play-fill");
+                } 
+                if(filetype) {
+                    if(filetype == 'pdf'){
+                        iconElement.removeClass("bi-file-earmark-pdf").addClass("bi-check2");
+                    }
+                    if(filetype == 'excel'){
+                        iconElement.removeClass("bi-filetype-exe").addClass("bi-check2");
+                    }
+                }
+                // Retrieve the course ID from PHP variable
+                var course_id = "<?php echo base64_encode($courseDetails[0]['course'][0]['id']); ?>";
+
+                // AJAX request to get progress
+                $.ajax({
+                    url: studentBaseUrl + "/student-getprogess/",
+                    type: "post",
+                    data: {
+                        course_id: course_id,
+                    },
+                    dataType: "json",
+                    headers: {
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                    success: function (response) {
+                        console.log(response.data);
+                        if(response.data != undefined){
+                            response.data.forEach(item => {
+                                // console.log(`Full Check: ${item.full_check}, Video ID: ${item.video_id}`);
+                                var iconElement = document.getElementById("play-pause-icon-" + item.video_id);
+                                if (iconElement) {
+                                    if (item.full_check === 'Yes' && previousTabId == item.video_id) {
+                                        // Remove existing classes and add the new one
+                                        iconElement.classList.remove('bi-pause-fill', 'bi-play-fill');
+                                        iconElement.classList.add('bi-check2');
+                                    }
+                                }
+                            });
+                        }
+                        previousTabId = currentTabId;
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error fetching data:", status, error);
+                    }
+                });
+
+            } else {
+                // No previousTabId to compare with, just set previousTabId to the current one
+                previousTabId = currentTabId;
+            }
+            var course_id = "<?php echo base64_encode($courseDetails[0]['course'][0]['id']); ?>";
+            $.ajax({
+                url: studentBaseUrl + "/student-watchprogess-check/",
+                type: "post",
+                data: {
+                    course_id:course_id,
+                    watch_content:"do_"+doid
+                },
+                dataType: "json",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                },
+                success: function (response) {
+
+                    console.log(response.data);
+                    if(response.data == "FALSE"){
+                        var watch_content = "do_"+doid;
+                        var currentValue = $('.total_progress_display_value').attr('value');
+                        var progress_count_total = $(".progress_count").data("progress");
+                        if(response.count == '0'){
+                            var total_progress_display_count = 1;
+                        }else{
+                            var total_progress_display_count = Number(response.count) + 1;
+                        }
+
+                        var total_progress_display =  (total_progress_display_count/progress_count_total)*100;
+
+
+
+                        $(".total_progress_display_value").css('width', total_progress_display.toFixed(0)+"%");
+                        $('.total_progress_display_value').attr('value', total_progress_display_count);
+                        document.querySelector('.total_progress_display_complete').textContent =  total_progress_display.toFixed(0) + '% Completed';
+
+                        
+                        var progress_bar = $('.progress_bar').attr('value');
+                        
+                        var studentBaseUrl = window.location.origin + "/student";
+                        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                        $.ajax({
+                            url: studentBaseUrl + "/student-watchprogess",
+                            type: "post",
+                            data: {
+                                progress_bar:total_progress_display.toFixed(0),
+                                total_progress_display_value:watch_content,
+                                total_progress_display_count:total_progress_display_count,
+                                course_id:course_id
+                            },
+
+                            dataType: "json",
+                            headers: {
+                                "X-CSRF-TOKEN": csrfToken,
+                            },
+                            success: function (response) {
+                                
+                            },
+                        });
+
+
+                    }
+                },
+            });
+    }
+
+    
     var studentBaseUrl = window.location.origin + "/student";
     var csrfToken = $('meta[name="csrf-token"]').attr("content");
     $(".quizActive").on("click", function (event) {
@@ -1652,6 +1848,8 @@ $i++;
                     $(".quizActive").show();
                     $(".quizPane").collapse("show");
                     $("#resource-excel").hide();
+                    $("#resource-docs").hide();
+
                },
            });
 

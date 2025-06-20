@@ -127,20 +127,20 @@ input[type=number] {
                                 <span class="bs-stepper-label">Others</span>
                             </button>
                         </div>
-                        {{-- <div class="bs-stepper-line"></div>
+                        <div class="bs-stepper-line"></div>
                         <div class="step" data-target="#section-selection-3">
                             <button type="button" class="step-trigger" role="tab" id="courseFormtrigger3"
                                 aria-controls="section-selection-3">
                                 <span class="bs-stepper-circle">3</span>
                                 <span class="bs-stepper-label">Section Selection </span>
                             </button>
-                        </div> --}}
+                        </div> 
 
                         <div class="bs-stepper-line"></div>
                         <div class="step" data-target="#course-content-4">
                             <button type="button" class="step-trigger" role="tab" id="courseFormtrigger4"
                                 aria-controls="course-content-4">
-                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-circle">4</span>
                                 <span class="bs-stepper-label" >Course Content </span>
                             </button>
                         </div>
@@ -559,7 +559,132 @@ input[type=number] {
                         </div>
 
                         <!-- Course Media -->
-                      
+                        <div id="section-selection-3" role="tabpanel" class="bs-stepper-pane fade"
+                            aria-labelledby="courseFormtrigger3">
+                            <!-- Card -->
+                          
+                                    <div class="card mb-3 border-0 px-3">
+                                        <div
+                                            class="card-header border-bottom py-3 mb-4 d-flex justify-content-between px-1 align-items-center">
+                                            <div>
+                                                <h3 class="mb-0">Section Selection</h3>
+                                                <span class="fs-4">Select Sections to Build Your Award Course </span>
+                                            </div>
+
+                                            <!-- <div><a href="#" class="btn btn-outline-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#add-section">Add Section +</a></div> -->
+
+                                        </div>
+
+                                        <!-- Card body -->
+
+                                        <!-- row -->
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-lg-8 col-12">
+                                                <div>
+                                                    <div class="mt-2">
+                                                    <!-- card -->
+                                                        <div
+                                                            class="bg-white rounded-md-pill shadow rounded-3 mb-2  search-add-award-course">
+                                                            <!-- card body -->
+                                                            <div class="p-md-2 p-4 border-1 border-light-subtle">
+                                                                <!-- form -->
+                                                                <div class="row g-1">
+                                                                    <div class="col-12 col-md-12">
+                                                                        <!-- input -->
+                                                                        <div
+                                                                            class="input-group mb-2 mb-md-0 border-md-0 border rounded-pill">
+                                                                            <!-- input group -->
+                                                                            <div class="search-container">
+                                                                                <input type="text" id="search" class="form-control rounded-pill border-0 ps-3 form-focus-none w-100 "
+                                                                                    placeholder="Search and select section from here" aria-describedby="searchSection" aria-label="Section" style="padding-right: 1.5rem;"/>
+                                                                                <i class="bi bi-search" id="searchSection" ></i>
+                                                                                <i class="bi bi-x-lg clear-button" style="margin-top: 10px"></i>
+                                                                                {{-- <i class="bi bi-x" id="clear-btn" style="display: none;"></i> --}}
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <ul class="search_list list-group d-none"
+                                                            style="">
+
+                                                        </ul>
+                                                        <!-- text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-header mb-3 px-1">
+                                            <h4 class="mb-0">Choose Order</h4>
+                                            <p class="mb-0">Arrange Your Course Sections with Drag and Drop</p>
+
+                                        </div>
+
+                                        <form class="CourseMediaForm">
+                                            <input type="hidden"
+                                                value="{{ isset($CourseData[0]['id']) ? base64_encode($CourseData[0]['id']) : '' }}"
+                                                name="course_id" class="course_id">
+
+                                                    <div class="bg-light rounded p-2 mb-4">
+
+                                                        <div class="list-group list-group-flush border-top-0" id="courseList">
+
+                                                            <div id="courseOne">
+                                                            
+                                                        @if (isset($CourseData))   
+                                                            
+                                                                @foreach($CourseData[0]['course_manage'] as $section)
+                                                                @foreach($section['sections'] as $section)
+                                                                    @if (isset($section['id']))
+                                                                        <div class='list-group-item rounded px-3 text-nowrap mb-1' id="sectionID">
+                                                                            <input type='hidden' name='section_id[]' value="{{ isset($section['id']) ? base64_encode($section['id']) : 0}}">
+                                                                            <div class='d-flex align-items-center justify-content-between'>
+                                                                                <div>
+                                                                                    <h5 class='mb-0 text-truncate'><a href='#'
+                                                                                        class='text-inherit'><span class='align-middle fs-4 text-wrap-title'>
+                                                                                            <i class='fe fe-menu me-1 align-middle'></i>
+                                                                                            @php $action = base64_encode("edit");
+                                                                                                 $courseId =isset($section['id']) ? base64_encode($section['id']) : '' 
+                                                                                             @endphp
+                                                                                            <a href="{{ url('admin/section-content-get/' . $courseId . '/' . $action) }}">
+                                                                                                {!! htmlspecialchars_decode($section['section_name']) !!}
+                                                                                            </a>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <a href='javascript:void(0)'  onclick="removeSection(this);"  class='me-1 text-inherit' data-bs-toggle='tooltip' data-placement='top'
+                                                                                        aria-label='Delete' data-bs-original-title='Delete'><i
+                                                                                            class='fe fe-trash-2 fs-6'></i></a>
+                                                                                </div>       
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                    @endforeach
+                                                                @endforeach
+                                                                @endif
+                                                            </div>
+
+                                                        
+                                                        </div>
+
+                                                    </div>
+                                                     <!-- Button -->
+                                            <div class="d-flex justify-content-between">
+                                                <button class="btn btn-secondary previousOtherForm">Previous</button>
+                                                <button type="button" class="btn btn-primary" id="updateSectionAssigned">
+                                                    Save & Next</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                               
+
+                        </div>
 
                         <!-- Course Content -->
                         <div id="course-content-4" role="tabpanel" class="bs-stepper-pane fade"
