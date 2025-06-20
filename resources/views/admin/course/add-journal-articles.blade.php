@@ -187,7 +187,6 @@
 
 <script>
     function ExcelContentDownload(file,file_name) {
-        alert(file_name);
         var newUrl = "{{ Storage::url('') }}" + file + "#toolbar=0&navpanes=0&scrollbar=0";
         var a = document.createElement('a');
         a.href = newUrl;
@@ -197,9 +196,7 @@
         document.body.removeChild(a);
     }
     function DocxContentDownload(file,file_name) {
-        alert(file_name);
         var newUrl = "{{ Storage::url('') }}" + file;
-        alert(newUrl);
         var a = document.createElement('a');
         a.href = newUrl;
         // a.download = file_name; // Set the desired file name for the download
