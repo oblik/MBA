@@ -142,7 +142,7 @@
                                                         
                                                         /> --}}
                                                         <a target="_blank" href="{{$LINK}}" class="text-inherit" ><img
-                                                            src="{{ Storage::url($value->podcast_thumbnail_file) }}"
+                                                            src="{{ Storage::url($value->course_thumbnail_file) }}"
                                                             alt="course" class="card-img-top img-fluid" max-height='10px' style="object-fit: cover;"></a>
                                                
 
@@ -305,7 +305,7 @@
                                             <img src="{{ asset('frontend/images/icon/purchase_course.svg')}}" alt="not found" style="height: 160px; width: 160px">
                                             <h3 class="mt-3">Purchase Course</h3>
                                             <p>Unfortunately, There is no purchase course. Check out our latest offerings!</p>
-                                            <a href="{{ route('index', ['scroll' => 'true']) }}" width="20;" class="btn btn-primary">Start Learning</a>
+                                            {{-- <a href="{{ route('index', ['scroll' => 'true']) }}" width="20;" class="btn btn-primary">Start Learning</a> --}}
                                         </div>
                                     </div>
                                 @endif

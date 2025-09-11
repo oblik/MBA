@@ -38,12 +38,12 @@
                                         </li>
                                     @else 
                                         @if (is_exist('student_course_master',['user_id'=>Auth::user()->id]) > 0 && is_exist('orders',['user_id'=>Auth::user()->id,'status'=>'0']) > 0) --}}
-                                        <li class="nav-item sp-3">
+                                        {{-- <li class="nav-item sp-3">
                                             <a class="nav-link" href="{{route('student-document-verification')}}">
                                                 <i class="fe fe-clipboard nav-icon"></i>
                                                 Document Verification
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         {{-- @endif --}}
                                     {{-- @endif --}}
                                     

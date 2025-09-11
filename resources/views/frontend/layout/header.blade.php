@@ -67,13 +67,13 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container px-0">
         @if(Auth::check() && Auth::user()->role === 'user')
-            <a class="navbar-brand logo-main" href="/"><img src="{{ asset('frontend/images/brand/logo/logo.png') }}"
+            <a class="navbar-brand logo-main"><img src="{{ asset('frontend/images/brand/logo/logo.png') }}"
                 alt="E-Ascencia" /></a>
         @elseif(Auth::check() && Auth::user()->role === 'instructor')
-            <a class="navbar-brand logo-main"  href="/"><img src="{{ asset('frontend/images/brand/logo/logo.png') }}"
+            <a class="navbar-brand logo-main" ><img src="{{ asset('frontend/images/brand/logo/logo.png') }}"
             alt="E-Ascencia" /></a>
         @else
-            <a class="navbar-brand logo-main" href="/"><img src="{{ asset('frontend/images/brand/logo/logo.png') }}"
+            <a class="navbar-brand logo-main"><img src="{{ asset('frontend/images/brand/logo/logo.png') }}"
             alt="E-Ascencia" /></a>   
         @endif  
         <!-- Mobile view nav wrap -->
@@ -98,13 +98,13 @@
             <div class="d-flex align-items-center">
                 @if(Auth::check())
                     @if(Auth::user()->role === 'user')
-                    <a href="{{ route('shopping-cart') }}"
+                    {{-- <a href="{{ route('shopping-cart') }}"
                     class="btn btn-icon btn-light rounded-circle mx-2 position-relative bg-blue-light">
                     <i class="fe fe-shopping-cart align-middle fs-4"></i>
                     <span class="position-absolute translate-middle badge rounded-circle bg-primary cart-item-number">
                          @php $CartCount = getData('cart',['id'],['student_id'=>auth()->user()->id,'status'=>'Active','is_by'=>'1']); @endphp {{count($CartCount)}}
                     </span>
-                    </a>
+                    </a> --}}
                     @endif
                 @endif
 
@@ -900,7 +900,7 @@
                 <li class="nav-item dropdown">
                 @if(Auth::check())
                     @if(Auth::user()->role === 'user')
-                        <a href="{{ route('shopping-cart') }}" class="btn btn-icon btn-light rounded-circle d-block d-none mx-2"><i class="fe fe-shopping-cart align-middle shoppingCartMobileView"></i><span class="position-absolute translate-middle badge rounded-circle bg-primary cart-item-number">{{count($CartCount)}}</span></a>
+                        {{-- <a href="{{ route('shopping-cart') }}" class="btn btn-icon btn-light rounded-circle d-block d-none mx-2"><i class="fe fe-shopping-cart align-middle shoppingCartMobileView"></i><span class="position-absolute translate-middle badge rounded-circle bg-primary cart-item-number">{{count($CartCount)}}</span></a> --}}
                     @endif
                 @endif
                 </li>
