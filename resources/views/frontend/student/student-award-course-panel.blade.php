@@ -751,7 +751,7 @@ $i++;
     function videoDisplay(videoId,vid) {
         currentVideoId = videoId;
         console.log("currentVideoId", currentVideoId);
-        var newUrl = "https://iframe.mediadelivery.net/embed/253882/" +
+        var newUrl = "https://iframe.mediadelivery.net/embed/491943/" +
             videoId +
             "?autoplay=false&loop=false&muted=false&preload=true&responsive=true";
         $('#videoDisply').prop('src', newUrl);

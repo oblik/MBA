@@ -1486,6 +1486,11 @@ class StudentAdminController extends Controller
             $course_id = isset($req->course_id) ? base64_decode($req->course_id) : '';
             $CoursesData = getData('course_master',['ementor_id','course_title','duration_month'],['id'=>$course_id]);
 
+            $studentCourseMaster = getData('student_course_master',['course_id','user_id'],['course_id'=>$course_id,'user_id'=>$student_id]);
+            if($studentCourseMaster->count() > 0){
+                return json_encode(['code' => 200, 'title' => "already purchased", 'message' => 'This Course Already Purchased.', "icon" => generateIconPath("success")]);
+
+            }
             $select = [
                 'course_id' => $course_id,
                 'user_id' => $student_id,

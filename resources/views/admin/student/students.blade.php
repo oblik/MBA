@@ -59,11 +59,11 @@
                             Delete <i class="fe fe-trash ms-1"></i>
                         </button>
                        </div>
-                       <div class="d-grid d-sm-block ms-2 d-md-0 mt-2 mt-md-0">
+                       {{-- <div class="d-grid d-sm-block ms-2 d-md-0 mt-2 mt-md-0">
                             <a href="#" id="exportButtonWithoutFilter" data-route="{{ route('export') }}" class="btn btn-outline-primary">
                                 Export <i class="fe fe-upload ms-1"></i>
                             </a>
-                       </div>
+                       </div> --}}
                       
                        {{-- <div class="d-grid d-sm-block ms-2 d-md-0 mt-2 mt-md-0">
                         <button type="button" class="btn btn-outline-primary ">
@@ -1000,9 +1000,9 @@ $('#checkAll').click(function (e) {
                         var Action = '<div class="hstack gap-3"><a href="' +
                         editUrl +
                         '" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit"></i></a><a href="#" data-bs-toggle="tooltip" data-placement="top" title="Delete" class="deleteStudent" data-delete_id="'+btoa(row.id)+'"><i class="fe fe-trash"></i></a>';
-                        if (row.paidCourses && row.paidCourses.length ==  0) {
+                        // if (row.paidCourses && row.paidCourses.length ==  0) {
                              Action += '<button class="btn btn-sm btn-primary CoursePurchase" data-student_id="'+btoa(row.id)+'">Assigned Course</button>';
-                        }
+                        // }
                          Action += '<span class="dropdown dropstart"><a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false"><i class="fe fe-more-vertical"></i></a> <span class="dropdown-menu"><span class="dropdown-header">Settings</span>';              
                         // <a class="dropdown-item"  href="#"><span class="badge-dot bg-success me-1 d-inline-block align-middle"></span>Active</a><a class="dropdown-item" href="#"><span class="badge-dot bg-danger me-1 d-inline-block align-middle"></span>Inactive</a><a class="dropdown-item" href="#"><i class="fe fe-mail dropdown-item-icon"></i>Mail</a><a class="dropdown-item" href="#"><i class="fe fe-move dropdown-item-icon"></i>Move</a></span>'
 

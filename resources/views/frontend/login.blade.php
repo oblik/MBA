@@ -118,10 +118,10 @@
                         </div>
                         <hr class="my-4">
                         <div class="mt-4 text-center">
-                            <span>
-                                Don’t have an account? <a href="{{route('user.signup')}}" class="ms-1">Sign up</a>
+                            {{-- <span> --}}
+                                {{-- Don’t have an account? <a href="{{route('user.signup')}}" class="ms-1">Sign up</a> --}}
                                 {{-- Don’t have an account ? Please Sign up first --}}
-                            </span>
+                            {{-- </span> --}}
                         </div>
                     </form>
 
