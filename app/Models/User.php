@@ -44,7 +44,8 @@ class User extends Authenticatable
         'is_deleted',
         'deleted_on',
         'university_code',
-        'apply_dba'
+        'apply_dba',
+        'email_verified_at'
     ];
     
     protected static function boot()
