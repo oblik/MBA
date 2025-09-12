@@ -27,9 +27,9 @@
                         <!-- Breadcrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
+                                {{-- <li class="breadcrumb-item">
                                     <a href="{{ route('dashboard') }}">Dashboard</a>
-                                </li>
+                                </li> --}}
                                 <li class="breadcrumb-item">
                                     <a href="{{ route('admin.students') }}">Student List</a>
                                 </li>
@@ -389,17 +389,14 @@
                                         </div>
                                     </div>
                                     <!-- Document Verification Card header -->
-                                    <div class="card-header">
+                                    {{-- <div class="card-header">
                                         <h3 class="mb-0">Document Verification</h3>
                                         <p class="mb-0">Ensuring Authenticity: The Process for Course Enrollment</p>
-                                    </div>
-                                    <div class="card-body">
+                                    </div> --}}
+                                    {{-- <div class="card-body">
                                         @if (isset($studentDoc->identity_doc_file) &&
                                                 !empty($studentDoc->identity_doc_file && Storage::disk('local')->exists($studentDoc->identity_doc_file)))
-                                          
-                                                <!-- Form -->
-                                                <form class="row gx-3 needs-validation studentDoc" novalidate="">
-                                                    <!-- id proof -->
+                                                    <form class="row gx-3 needs-validation studentDoc" novalidate="">
                                                     <div class="mb-3 col-12 col-md-8">
                                                         <div class="">
                                                             <label class="form-label">Name of Person <span class="text-danger">*</span></label>
@@ -410,8 +407,6 @@
                                                                 <input type="text" name="student_id"
                                                                     value="{{ isset($studentDoc->student_id) ? base64_encode($studentDoc->student_id) : '' }}"
                                                                     hidden />
-
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
                                                         <div class="invalid-feedback" id="name_error">Please enter name of
@@ -423,11 +418,9 @@
                                                             <div class="input-group mb-1">
                                                                 <input type="date" class="form-control" name="birth_dob"
                                                                     value="{{ isset($studentDoc->dob_on_identity_card) ? $studentDoc->dob_on_identity_card : '' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
 
-                                                        {{-- <div class="invalid-feedback" Please Select DOB.</div> --}}
                                                     </div>
                                                     <div class="mb-3 col-12 col-md-12">
                                                         <div class="">
@@ -436,7 +429,6 @@
                                                                 <input type="text" class="form-control" name="proof_name"
                                                                     id="proof_name"
                                                                     value="{{ isset($studentDoc->identity_doc_type) ? $studentDoc->identity_doc_type : '' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
 
@@ -450,7 +442,6 @@
                                                                 <input type="text" class="form-control" id="doc_id_no"
                                                                     name="doc_id_no"
                                                                     value="{{ isset($studentDoc->identity_doc_number) ? htmlspecialchars_decode($studentDoc->identity_doc_number) : '' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
 
@@ -464,7 +455,6 @@
                                                                 <input type="text" class="form-control" id="Authority"
                                                                     name="doc_auth"
                                                                     value="{{ isset($studentDoc->identity_doc_authority) ? htmlspecialchars_decode($studentDoc->identity_doc_authority) : '' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
                                                         <div class="invalid-feedback" id="doc_authority_error">Please enter document issue authority.</div>
@@ -476,7 +466,6 @@
                                                                 <input type="date" class="form-control" id="Issue"
                                                                     name="issue_date"
                                                                     value="{{ isset($studentDoc->identity_doc_issue_date) ? $studentDoc->identity_doc_issue_date : '1900-01-01' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
 
@@ -489,7 +478,6 @@
                                                                 <input type="date" class="form-control" id="expiry_date"
                                                                     name="expiry_date"
                                                                     value="{{ isset($studentDoc->identity_doc_expiry) ? $studentDoc->identity_doc_expiry : '' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
 
@@ -504,7 +492,6 @@
                                                                 <input type="text" class="form-control" id="issue_country"
                                                                     name="issue_country"
                                                                     value="{{ isset($studentDoc->identity_doc_country) ? $studentDoc->identity_doc_country : '' }}">
-                                                                {{-- <label class="input-group-text" for="inputLogo">Upload</label> --}}
                                                             </div>
                                                         </div>
                                                         <div class="invalid-feedback" id="issuing_country_error">Please enter
@@ -541,11 +528,7 @@
                                                             verification status.</div>
                                                     </div>
                                                     <div class="col-12">
-                                                        <!-- Button -->
                                                         <button class="btn btn-primary verifyDoc" type="button">Submit Now <i class="bi bi-patch-check"></i></button>
-                                                        {{-- <a href="{{ Storage::disk('local')->url($studentDoc->identity_doc_file) }}"
-                                                            download="{{ isset($studentDoc['user']->name) ? $studentDoc['user']->name . '_ID_Card' : ' ' }}"><button
-                                                                class="btn btn-primary ms-2">Download Doc <i class="bi bi-download"></i></button></a> --}}
                                                         @if (isset($studentDoc->identity_doc_file) &&  !empty($studentDoc->identity_doc_file && Storage::disk('local')->exists($studentDoc->identity_doc_file)))
                                                             <a class="btn btn-primary ms-2" href="{{ Storage::disk('local')->url($studentDoc->identity_doc_file) }}" target="_blank">View Doc</a>
                                                         @endif       
@@ -567,7 +550,6 @@
                                                         <label class="form-label" for="edu_level">Select Higher Education
                                                             Type<span class="text-danger">*</span></label>
                                                         <select class="form-select" id="edu_level" name="edu_level" required>
-                                                            {{-- <option value="{{!empty($studentDoc['edu_level']) ? $studentDoc['edu_level'] : '' }}">{{!empty($studentDoc['edu_level']) ? $studentDoc['edu_level'] : 'Select' }}</option> --}}
                                                             <option value="0">Select</option>
                                                             <option value="5"
                                                                 @if ($studentDoc->edu_level == '5') selected @endif>E5</option>
@@ -582,14 +564,7 @@
                                                     </div>
                                                     <div class="mb-3 col-12 col-md-6">
                                                         <label class="form-label" for="specilization">Specialization <span class="text-danger">*</span></label>
-                                                        {{-- <select class="form-select" id="specilization" name="specilization" required>
-                                                                <option value="{{!empty($studentDoc['edu_specialization']) ? $studentDoc['edu_specialization'] : '' }}">{{!empty($studentDoc['edu_specialization']) ? $studentDoc['edu_specialization'] : 'Select' }}</option>
-                                                                <option value="Bsc">Bsc</option>
-                                                                <option value="Bcom">Bcom</option>
-                                                                <option value="MA">MA</option>
-                                                                <option value="Msc">Msc</option>
-                                                                <option value="Others">Others</option>
-                                                            </select> --}}
+                                                        
                                                         <input type="text" class="form-control" id="specilization"
                                                             name="specilization"
                                                             value="{{ isset($studentDoc['edu_specialization']) ? htmlspecialchars_decode($studentDoc['edu_specialization']) : '' }}"
@@ -645,11 +620,7 @@
                                                                 <div class="invalid-feedback" id="eduDocId_error">Please enter
                                                                     document iD number</div>
                                                             </div>
-                                                            {{-- <div class="mb-3 col-12 col-md-4">
-                                                                <label class="form-label" for="">Grade or Marks</label>
-                                                                <input type="text" class="form-control" id="eduGrade" name="eduGrade" value="{{isset($studentDoc['grade_on_edu_doc']) ? $studentDoc['grade_on_edu_doc'] : ''}}" >
-                                                                <div class="invalid-feedback" id="eduGrade_error">Please enter Grade or Marks</div>
-                                                            </div> --}}
+                                                          
                                                             <div class="mb-3 col-12 col-md-4">
                                                                 <label class="form-label" for="">Education Remark<span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" id="eduRemark"
@@ -691,13 +662,9 @@
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <!-- Button -->
                                                         <button class="btn btn-primary verifyEduDoc"
                                                             type="button">Submit Now <i class="bi bi-patch-check"></i> </button>
-                                                        {{-- <button class="btn btn-primary ms-1" type="button"> Download Doc <i class="bi bi-download"></i></button> --}}
-                                                        {{-- <a href="{{ Storage::disk('local')->url($studentDoc->edu_doc_file) }}"
-                                                            download="{{ isset($studentDoc['user']->name) ? $studentDoc['user']->name . '_Education_Card' : ' ' }}"><button
-                                                                class="btn btn-primary ms-1">Download Doc <i class="bi bi-download"></i></button></a> --}}
+                                                       
                                                         @if (isset($studentDoc->edu_doc_file) &&  !empty($studentDoc->edu_doc_file && Storage::disk('local')->exists($studentDoc->edu_doc_file)))
                                                         <a class="btn btn-primary ms-2" href="{{ Storage::disk('local')->url($studentDoc->edu_doc_file) }}" target="_blank">View Doc</a>
                                                         @endif
@@ -711,9 +678,8 @@
 
                                             <hr class="my-5">
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- Resume Card header -->
+                                    </div> --}}
+                                    {{-- <div class="card-body">
                                             <div class="border-bottom pb-2 mb-4">
                                                 @if (isset($studentDoc->english_score))
                                                 @php 
@@ -732,9 +698,8 @@
                                                 <h3 class="mb-0"> English Test : </h3><br><h4 class="text-danger"> The english test is not done yet.</h4>
                                                 @endif
                                             </div>
-                                    </div>
-                                    <div class="card-body">
-                                    <!-- Resume Card header -->
+                                    </div> --}}
+                                    {{-- <div class="card-body">
                                         <div class="border-bottom pb-2 mb-4">
                                             <h3 class="mb-0">Resume</h3>
                                             <p class="mb-0">Check and download resume from here</p>
@@ -749,9 +714,8 @@
                                             <h4 class="text-danger">Resume not uploaded yet.</h4>
                                         @endif
 
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- Resume Card header -->
+                                    </div> --}}
+                                    {{-- <div class="card-body">
                                             <div class="border-bottom pb-2 mb-4">
                                                 <h3 class="mb-0">Research Proposal</h3>
                                                 <p class="mb-0">Check and download Research Proposal from here</p>
@@ -759,9 +723,6 @@
                                             @if (Auth::check() && Auth::user()->role =='superadmin')
                                             @if (isset($studentDoc->research_proposal_file) &&
                                                     !empty($studentDoc->research_proposal_file && Storage::disk('local')->exists($studentDoc->research_proposal_file)))
-                                                {{-- <a href="{{ Storage::disk('local')->url($studentDoc->research_proposal_file) }}"
-                                                    download="{{ isset($studentDoc['user']->name) ? $studentDoc['user']->name . '_ResearchProposal' : ' ' }}"><button
-                                                        class="btn btn-primary">Download Research Proposal <i class="bi bi-download"></i> </button></a> --}}
                                                     <form class="row gx-3 needs-validation studentResearchDoc" novalidate="">
                                                         <input type="text" name="student_id"
                                                         value="{{ isset($studentDoc->student_id) ? base64_encode($studentDoc->student_id) : '' }}"
@@ -801,10 +762,7 @@
                                                     <div class="col-12">
                                                         <button class="btn btn-primary verifyResearchDoc"
                                                             type="button">Submit Now <i class="bi bi-patch-check"></i> </button>
-                                                        {{-- <button class="btn btn-primary ms-1" type="button"> Download Doc <i class="bi bi-download"></i></button> --}}
-                                                        {{-- <a href="{{ Storage::disk('local')->url($studentDoc->edu_doc_file) }}"
-                                                            download="{{ isset($studentDoc['user']->name) ? $studentDoc['user']->name . '_Education_Card' : ' ' }}"><button
-                                                                class="btn btn-primary ms-1">Download Doc <i class="bi bi-download"></i></button></a> --}}
+                                                  
                                                         @if (isset($studentDoc->research_proposal_file) &&  !empty($studentDoc->research_proposal_file && Storage::disk('local')->exists($studentDoc->research_proposal_file)))
                                                         <a class="btn btn-primary ms-2" href="{{ Storage::disk('local')->url($studentDoc->research_proposal_file) }}" target="_blank">View Doc</a>
                                                         @endif
@@ -821,9 +779,8 @@
                                                 @endif
                                             @endif
     
-                                        </div>
+                                    </div> --}}
                                     <div class="card-body">
-                                    <!-- Social Profile Card header -->
                                     <div class="border-bottom mt-5 mb-3 pb-2">
                                         <h3 class="mb-0">Social Profile</h3>
                                         <p class="mb-0">Find the links to our social profiles below.</p>

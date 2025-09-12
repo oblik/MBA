@@ -158,7 +158,7 @@
                                                         {{-- <span class="badge bg-success-soft co-etcs">{{$value->ects}} ECTS</span> --}}
                                                     </div>
                                                     <h4 class="mb-2 text-truncate-line-2 course-title">
-                                                            <a target="_blank" class="text-inherit">{{htmlspecialchars_decode($value->course_title)}}</a>
+                                                            <a target="_blank" href="{{$LINK}}" class="text-inherit">{{htmlspecialchars_decode($value->course_title)}}</a>
                                                             {{-- @if($value->course_expired_on != '')
                                                             <h5 class="badge mt-2" style="background: #dae138; color: #2b3990"> 
                                                             {{isset($value->course_expired_on) ? 'Access until '.\Carbon\Carbon::parse($value->course_expired_on)->format('d-m-y') : ''}}.</h5>

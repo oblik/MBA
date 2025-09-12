@@ -241,7 +241,7 @@
             <div class="vh-100" data-simplebar>
 
                 @if(Auth::check() && Auth::user()->role === 'sales')
-                    <a class="navbar-brand" href="{{ route('dashboard.admin') }}">
+                    <a class="navbar-brand" href="#">
                         <img src="{{ asset('admin/images/brand/logo/E-Ascencia-Logo-White.svg') }}" alt="E-Ascencia" />
                     </a>
                     <ul class="navbar-nav flex-column" id="sideNavbar">
@@ -266,7 +266,7 @@
                     </ul>
                 @else
                 <!-- Brand logo -->
-                <a class="navbar-brand" href="{{ route('admin.index') }}">
+                <a class="navbar-brand" href="#">
                     <img src="{{ asset('admin/images/brand/logo/logo.png') }}" alt="E-Study" />
                 </a>
                 <!-- Navbar nav -->
@@ -291,9 +291,9 @@
                 
                     @if(Auth::check() && Auth::user()->role === 'superadmin')
                     <li class="nav-item">                
-                        <a class="nav-link  collapsed " href="{{ route('admin.index') }}">
+                        {{-- <a class="nav-link  collapsed " href="{{ route('admin.index') }}">
                             <i class="nav-icon fe fe-book me-2"></i> Admin
-                        </a>
+                        </a> --}}
                         <!-- <div id="nav-admin" class="collapse " data-bs-parent="#sideNavbar">
                             <ul class="nav flex-column">
                                 <li class="nav-item">

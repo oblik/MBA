@@ -22,7 +22,7 @@
                             <span class="fs-5" id="count"></span>
                         </h1>
                         <!-- Breadcrumb  -->
-                        <nav aria-label="breadcrumb">
+                        {{-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="{{route('dashboard')}}">Dashboard</a>
@@ -30,7 +30,7 @@
                                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Students</a></li>
                                 <!-- <li class="breadcrumb-item active" aria-current="page">All Admin</li> -->
                             </ol>
-                        </nav>
+                        </nav> --}}
                     </div>
                     <div class="nav btn-group" role="tablist">
 
@@ -91,18 +91,18 @@
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link active section-student-tab" data-cat="all" data-bs-toggle="pill" href="#all-admin" role="tab"  aria-selected="true">All</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                {{-- <li class="nav-item" role="presentation">
                                     <a class="nav-link section-student-tab" data-cat="verified" data-bs-toggle="pill" href="#active-admin" role="tab" aria-selected="false" tabindex="-1">Verified</a>
-                                </li>
+                                </li> --}}
                                 {{-- <li class="nav-item" role="presentation">
                                     <a class="nav-link section-student-tab" data-cat="pending" data-bs-toggle="pill" href="#active-admin" role="tab" aria-selected="false" tabindex="-1">Pending for Approval</a>
                                 </li> --}}
-                                <li class="nav-item" role="presentation">
+                                {{-- <li class="nav-item" role="presentation">
                                     <a class="nav-link section-student-tab" data-cat="Rejected" data-bs-toggle="pill" href="#active-admin" role="tab" aria-selected="false" tabindex="-1">Rejected</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link section-student-tab" data-cat="unverified" data-bs-toggle="pill" href="#active-admin" role="tab" aria-selected="false" tabindex="-1">Unverified</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link section-student-tab" data-cat="Active" data-bs-toggle="pill" href="#active-admin" role="tab" aria-selected="false" tabindex="-1">Active</a>
                                 </li>
@@ -200,7 +200,7 @@
                                                     </th>
                                                     <th>Sr. No.</th>
                                                     <th>Name</th>
-                                                    <th>Status</th>
+                                                    {{-- <th>Status</th> --}}
                                                     {{-- <th>Enrolled</th> --}}
                                                     <th>Course Name</th>
                                                     {{-- <th>Total Payment</th> --}}
@@ -862,41 +862,41 @@ $('#checkAll').click(function (e) {
                 },
                 width:'15%',
             },
-            {
-                "data": null,
-                "orderable": true,
-                render: function (data) {
-                    var status = data.is_verified ? data.is_verified : ''; 
-                    if (status === "Verified") {
-                        return (
-                            "<span class='badge text-success bg-light-success'>" +
-                            status +
-                            "</span>"
-                        );
-                    }
-                    if (status === "Pending") {
-                        return (
-                            '<span class="badge text-warning bg-light-warning">' +
-                            status +
-                            "</span>"
-                        );
-                    }
-                    if (status === "Unverified") {
-                        return (
-                            '<span class="badge text-danger bg-light-danger">' +
-                            status +
-                            "</span>"
-                        );
-                    } else {
-                        return (
-                            '<span class="badge text-secondary bg-light-secondary">' +
-                            status +
-                            "</span>"
-                        );
-                    }
-                },
-                width:'15%',
-            },
+            // {
+            //     "data": null,
+            //     "orderable": true,
+            //     render: function (data) {
+            //         var status = data.is_verified ? data.is_verified : ''; 
+            //         if (status === "Verified") {
+            //             return (
+            //                 "<span class='badge text-success bg-light-success'>" +
+            //                 status +
+            //                 "</span>"
+            //             );
+            //         }
+            //         if (status === "Pending") {
+            //             return (
+            //                 '<span class="badge text-warning bg-light-warning">' +
+            //                 status +
+            //                 "</span>"
+            //             );
+            //         }
+            //         if (status === "Unverified") {
+            //             return (
+            //                 '<span class="badge text-danger bg-light-danger">' +
+            //                 status +
+            //                 "</span>"
+            //             );
+            //         } else {
+            //             return (
+            //                 '<span class="badge text-secondary bg-light-secondary">' +
+            //                 status +
+            //                 "</span>"
+            //             );
+            //         }
+            //     },
+            //     width:'15%',
+            // },
             {
                 "data": null,
                 "orderable": true,

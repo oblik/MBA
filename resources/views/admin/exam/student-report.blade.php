@@ -70,7 +70,7 @@
                             <span class="fs-5">({{ isset($data['totalStudentsCount']) ? $data['totalStudentsCount'] : 0 }})</span>
                         </h1>
                         <!-- Breadcrumb  -->
-                        <nav aria-label="breadcrumb">
+                        {{-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -78,7 +78,7 @@
                                 <li class="breadcrumb-item"><a href="#">Students Reports</a></li>
                                 <!-- <li class="breadcrumb-item active" aria-current="page">All Admin</li> -->
                             </ol>
-                        </nav>
+                        </nav> --}}
                     </div>
                     <div class="nav btn-group" role="tablist">
 
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-3">
+                {{-- <div class="col-lg-4 col-md-6 mb-3">
                     <div class="card text-center shadow-lg verified-student-card">
                         <div class="card-body cardIconHeight">
                             <div class="rounded-circle d-flex align-items-center justify-content-center">
@@ -134,7 +134,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-4 col-md-6 mb-3">
                     <div class="card text-center shadow-lg excel-card">
                         <div class="card-body cardIconHeight">
@@ -231,12 +231,12 @@
                                                 <th>Sr No.</th>
                                                 <th>Roll No.</th>
                                                 <th>Name</th>
-                                                <th>Identity Type</th>
+                                                {{-- <th>Identity Type</th>
                                                 <th>Identity Number</th>
-                                                <th>Status</th>
+                                                <th>Status</th> --}}
                                                 <th>Enrolled</th>
                                                 <th>Course Name</th>
-                                                <th>Exam</th>
+                                                {{-- <th>Exam</th> --}}
                                                 <th>Is Expired</th>
                                                 <th>Purchase Date</th>
                                             </tr>
@@ -325,54 +325,54 @@
                                 },
                                 width: '15%',
                             },
-                            {
-                                data: null,
-                                render: function(data, type, full, row) {
-                                    return data.identity_doc_type;
-                                },
-                                width: '10%'
-                            },
-                            {
-                                data: null,
-                                render: function(data, type, full, row) {
-                                    return data.identity_doc_number;
-                                },
-                                width: '10%'
-                            },
-                            {
-                                data: null,
-                                render: function(data) {
-                                    var status = data.is_verified ? data.is_verified : '';
-                                    if (status === "Verified") {
-                                        return (
-                                            "<span class='badge text-success bg-light-success'>" +
-                                            status +
-                                            "</span>"
-                                        );
-                                    }
-                                    if (status === "Pending") {
-                                        return (
-                                            '<span class="badge text-warning bg-light-warning">' +
-                                            status +
-                                            "</span>"
-                                        );
-                                    }
-                                    if (status === "Unverified") {
-                                        return (
-                                            '<span class="badge text-danger bg-light-danger">' +
-                                            status +
-                                            "</span>"
-                                        );
-                                    } else {
-                                        return (
-                                            '<span class="badge text-secondary bg-light-secondary">' +
-                                            status +
-                                            "</span>"
-                                        );
-                                    }
-                                },
-                                width: '15%',
-                            },
+                            // {
+                            //     data: null,
+                            //     render: function(data, type, full, row) {
+                            //         return data.identity_doc_type;
+                            //     },
+                            //     width: '10%'
+                            // },
+                            // {
+                            //     data: null,
+                            //     render: function(data, type, full, row) {
+                            //         return data.identity_doc_number;
+                            //     },
+                            //     width: '10%'
+                            // },
+                            // {
+                            //     data: null,
+                            //     render: function(data) {
+                            //         var status = data.is_verified ? data.is_verified : '';
+                            //         if (status === "Verified") {
+                            //             return (
+                            //                 "<span class='badge text-success bg-light-success'>" +
+                            //                 status +
+                            //                 "</span>"
+                            //             );
+                            //         }
+                            //         if (status === "Pending") {
+                            //             return (
+                            //                 '<span class="badge text-warning bg-light-warning">' +
+                            //                 status +
+                            //                 "</span>"
+                            //             );
+                            //         }
+                            //         if (status === "Unverified") {
+                            //             return (
+                            //                 '<span class="badge text-danger bg-light-danger">' +
+                            //                 status +
+                            //                 "</span>"
+                            //             );
+                            //         } else {
+                            //             return (
+                            //                 '<span class="badge text-secondary bg-light-secondary">' +
+                            //                 status +
+                            //                 "</span>"
+                            //             );
+                            //         }
+                            //     },
+                            //     width: '15%',
+                            // },
                             {
                                 data: null,
                                 render: function(row) {
@@ -399,36 +399,36 @@
                                 },
                                 width: '30%',
                             },
-                            {
-                                data: null,
-                                render: function(row) {
-                                    var courseTitles = '';
-                                    let badge = '';
-                                    if (row.allPaidCourses && row.allPaidCourses.length > 0) {
-                                        row.allPaidCourses.forEach(function(course, index) {
-                                            let examData = row.examResults && row.examResults[course.scmId] ? row.examResults[course.scmId] : null;
+                            // {
+                            //     data: null,
+                            //     render: function(row) {
+                            //         var courseTitles = '';
+                            //         let badge = '';
+                            //         if (row.allPaidCourses && row.allPaidCourses.length > 0) {
+                            //             row.allPaidCourses.forEach(function(course, index) {
+                            //                 let examData = row.examResults && row.examResults[course.scmId] ? row.examResults[course.scmId] : null;
 
-                                            if (examData) {
-                                                badge = `<span class="badge bg-${examData.color}">${examData.result} ${examData.percent ? examData.percent + '%' : ''}</span>`;
-                                            } else {
-                                                badge = `<span class="badge bg-primary">Not Attempt</span>`;
-                                            }
+                            //                 if (examData) {
+                            //                     badge = `<span class="badge bg-${examData.color}">${examData.result} ${examData.percent ? examData.percent + '%' : ''}</span>`;
+                            //                 } else {
+                            //                     badge = `<span class="badge bg-primary">Not Attempt</span>`;
+                            //                 }
 
-                                            // courseTitles += `${badge}`;
-                                            // courseTitles += `${badge}`;
-                                            // courseTitles += `<p class="pt-2 mb-1"> ${badge}</p>`;
+                            //                 // courseTitles += `${badge}`;
+                            //                 // courseTitles += `${badge}`;
+                            //                 // courseTitles += `<p class="pt-2 mb-1"> ${badge}</p>`;
                                             
-                                            courseTitles += `<div class="wrapper-class" style="line-height:1.6rem"><p class="">${badge}</p></div>`;
+                            //                 courseTitles += `<div class="wrapper-class" style="line-height:1.6rem"><p class="">${badge}</p></div>`;
 
-                                            if (index < row.allPaidCourses.length - 1) {
-                                                courseTitles += '';
-                                            }
-                                        });
-                                    }
-                                    return courseTitles;
-                                },
-                                width: '30%',
-                            },
+                            //                 if (index < row.allPaidCourses.length - 1) {
+                            //                     courseTitles += '';
+                            //                 }
+                            //             });
+                            //         }
+                            //         return courseTitles;
+                            //     },
+                            //     width: '30%',
+                            // },
                             {
                                 data: null,
                                 render: function(row) {
@@ -438,9 +438,10 @@
                                         row.allPaidCourses.forEach(function(course, index) {
                                             let today = new Date();
                                             let adjustedExpiryDate = new Date(course.adjusted_expiry);
-                                            let isExpired = (adjustedExpiryDate < today) || 
-                                                            (course.exam_attempt_remain === 0) ||
-                                                            (course.exam_remark === '1');
+                                            let isExpired = (adjustedExpiryDate < today);
+                                            // || 
+                                            //                 (course.exam_attempt_remain === 0) ||
+                                            //                 (course.exam_remark === '1');
 
                                             if (isExpired) {
                                                 badge = `<span class="badge bg-primary">Yes</span>`;  // Expired

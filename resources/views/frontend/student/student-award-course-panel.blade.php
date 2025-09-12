@@ -52,7 +52,7 @@ style="height: 100%; overflow-y:auto; overflow-x:hidden !important;">
 <div class="simplebar-content student-award-panel-scrollbar" style="padding: 0px;">
 <li class="list-group-item">
 <h4 class="mb-0">
-    <?php $DocumentVerified = ''; ?>
+    {{-- 
     @php
         $doc_verified = getData('student_doc_verification',['english_score','identity_is_approved','edu_is_approved','identity_doc_file','edu_doc_file','resume_file','edu_trail_attempt','identity_trail_attempt','english_test_attempt'],['student_id'=>Auth::user()->id]);
     @endphp 
@@ -68,7 +68,7 @@ style="height: 100%; overflow-y:auto; overflow-x:hidden !important;">
         @php $DocumentVerified = ""; @endphp
     @else
         @php $DocumentVerified = "NotVerified"; @endphp
-    @endif
+    @endif --}}
     {{ htmlspecialchars_decode($courseDetails[0]['course'][0]['course_title']) }}
 </h4>
 @php $j=0; @endphp
@@ -730,14 +730,7 @@ $i++;
     }
     document.addEventListener("DOMContentLoaded", function() {
     
-        var DocumentVerified = "<?php echo $DocumentVerified ?>";
-        if (DocumentVerified == "NotVerified") { // Assuming isDocumentVerified is a boolean variable indicating document status.
-            UploadDocument();
-        }else if (DocumentVerified == "englishVerified") { // Assuming isDocumentVerified is a boolean variable indicating document status.
-            EnglishTest();
-        }else if(DocumentVerified == "englishAttempt"){
-            englishAttempt();
-        }
+       
         
 
         var defaultVideoId = "<?php echo $VideoData[0]->bn_video_url_id;?>";

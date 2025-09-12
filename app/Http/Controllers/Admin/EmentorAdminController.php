@@ -765,22 +765,21 @@ class EmentorAdminController extends Controller
                 
                 return 
                     !empty($user->allPaidCourses) && 
-                    $user->is_active === 'Active' && 
-                    $user->is_verified === 'Verified';
+                    $user->is_active === 'Active';
             })->values();
             
             foreach ($studentData as $user) {
                 $user->allPaidCourses = getAllPaidCourse(['user_id' => $user->id, 'ementor_id' => base64_decode($ementorId)]);
-                $examResults = [];
+                // $examResults = [];
 
                 foreach ($user->allPaidCourses as $course) {
                     $courseExamCount = getCourseExamCount(base64_encode($course->course_id));
-                    $examRemarkMasters = DB::table('exam_remark_master')->where([
-                        'course_id' => $course->course_id,
-                        'user_id' => $user->id,
-                        'student_course_master_id' => $course->scmId,
-                        'is_active' => 1,
-                    ])->get();
+                    // $examRemarkMasters = DB::table('exam_remark_master')->where([
+                    //     'course_id' => $course->course_id,
+                    //     'user_id' => $user->id,
+                    //     'student_course_master_id' => $course->scmId,
+                    //     'is_active' => 1,
+                    // ])->get();
 
                     $studentCourseMaster = getData('student_course_master', ['exam_attempt_remain'], [
                         'course_id' => $course->course_id,
@@ -788,19 +787,19 @@ class EmentorAdminController extends Controller
                         'id' => $course->scmId
                     ]);
 
-                    $examResult = determineExamResult(
-                        $studentCourseMaster[0]->exam_attempt_remain ?? 0,
-                        count($examRemarkMasters),
-                        $courseExamCount,
-                        $course->course_id,
-                        $user->id,
-                        $course->scmId
-                    );
+                    // $examResult = determineExamResult(
+                    //     $studentCourseMaster[0]->exam_attempt_remain ?? 0,
+                    //     count($examRemarkMasters),
+                    //     $courseExamCount,
+                    //     $course->course_id,
+                    //     $user->id,
+                    //     $course->scmId
+                    // );
 
-                    $examResults[$course->scmId] = $examResult;
+                    // $examResults[$course->scmId] = $examResult;
                 }
 
-                $user->examResults = $examResults;
+                // $user->examResults = $examResults;
             }
             return response()->json($studentData);
             
