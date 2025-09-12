@@ -325,8 +325,8 @@
                         </li>
                     </ul>
                 @else
-                    <a href="{{ route('viewlogin') }}"
-                        class="btn btn-outline-primary d-none shadow-sm me-2  d-lg-block text-nowrap">Log in</a>
+                    {{-- <a href="{{ route('viewlogin') }}"
+                        class="btn btn-outline-primary d-none shadow-sm me-2  d-lg-block text-nowrap">Log in</a> --}}
 
                     <ul class="navbar-nav sign-btns-main">
                         {{-- <li class="nav-item dropdown">
