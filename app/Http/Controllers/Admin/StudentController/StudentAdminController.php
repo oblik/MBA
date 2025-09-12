@@ -875,6 +875,7 @@ class StudentAdminController extends Controller
                 'user_agent' => $userAgent,
                 'password' => Hash::make($request->password),
                 'is_admin_create' => $admin_id,
+                'email_verified_at'=> $this->time
             ];
 
             $user = User::create($data);

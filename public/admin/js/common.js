@@ -145,7 +145,8 @@ $(document).ready(function () {
 
                         var redirect = `/admin/${source}`;
 
-                        showModalWithRedirect(modalData, redirect);
+                        // showModalWithRedirect(modalData, redirect);
+                        showModal(modalData);
                     }
                     if (response.code === 202) {
                         $(".errors").remove();

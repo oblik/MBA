@@ -1182,7 +1182,7 @@
                                     "course-details/" +
                                     CourseId;
                                 return (
-                                    "<a href="+editUrl+"  class='text-inherit'><div class='d-flex align-items-center'><div></div><div class=''><h4 class='mb-1 text-primary-hover text-wrap-title'>" +
+                                    "<a href='#'  class='text-inherit'><div class='d-flex align-items-center'><div></div><div class=''><h4 class='mb-1 text-primary-hover text-wrap-title'>" +
                                     name +
                                     "</div></h4><span><small>Created at " +
                                     created_at +

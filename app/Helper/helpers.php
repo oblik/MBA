@@ -154,7 +154,7 @@ if (!function_exists('getAllPaidCourse')) {
 
             $userId = $where['user_id'] ? $where['user_id'] : 0;
             
-            // $adjustedExpiryCondition = "IF(scm.exam_attempt_remain = 1, DATE_ADD(scm.course_expired_on, INTERVAL 15 DAY), scm.course_expired_on)";
+            $adjustedExpiryCondition = "IF(scm.exam_attempt_remain = 1, DATE_ADD(scm.course_expired_on, INTERVAL 15 DAY), scm.course_expired_on)";
 
             $query = DB::table('course_master as cm')
                 ->select(
@@ -171,8 +171,8 @@ if (!function_exists('getAllPaidCourse')) {
                     'scm.course_progress',
                     'scm.id as scmId',
                     'scm.course_start_date',
-                    // 'payments.total_amount as purchase_price',
-                    // DB::raw("$adjustedExpiryCondition as adjusted_expiry")
+                    // 'payments.total_amount as purchase_price',/
+                    DB::raw("$adjustedExpiryCondition as adjusted_expiry")
                 )
                 ->leftJoin('orders as ord', 'ord.course_id', '=', 'cm.id')
                 ->leftJoin('users as user', 'ord.user_id', '=', 'user.id')
