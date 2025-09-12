@@ -36,7 +36,7 @@ class Role
         } else if ($role_name === 'admin' && $role !== 'admin')  {
             return redirect('/admin/admin');
         } else if ($role_name === 'superadmin' && !in_array($role, ['admin','superadmin','sales'])) {
-            return redirect('/admin/admin');
+            return redirect('/admin/students');
         } else if ($role_name === 'sales' && !in_array($role, ['admin','superadmin','sales'])) {
             return redirect('/admin/admin');
         }
