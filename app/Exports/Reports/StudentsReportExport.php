@@ -115,11 +115,11 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
             //     return $course->purchase_price ? '€ ' . $course->purchase_price : '';
             // })->implode("\n");
 
-            $coursesPurchasePrices = collect($student->allPaidCourses)->map(function ($course) {
+            // $coursesPurchasePrices = collect($student->allPaidCourses)->map(function ($course) {
 
-                $this->totalSalesAmount += $course->purchase_price;
-                return $course->purchase_price !== null ? '€ ' . $course->purchase_price : '';
-            })->implode("\n");
+            //     $this->totalSalesAmount += $course->purchase_price;
+            //     return $course->purchase_price !== null ? '€ ' . $course->purchase_price : '';
+            // })->implode("\n");
             
 
             $coursesExamResults = collect($student->allPaidCourses)->map(function ($course) use ($student) {
@@ -136,9 +136,7 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
             $coursesExpiries = collect($student->allPaidCourses)->map(function ($course) {
                 $today = now();
                 $adjustedExpiryDate = \Carbon\Carbon::parse($course->adjusted_expiry);
-                $isExpired = ($adjustedExpiryDate < $today) ||
-                            ($course->exam_attempt_remain === 0) ||
-                            ($course->exam_remark === '1');
+                $isExpired = ($adjustedExpiryDate < $today);
 
                 return $isExpired ? 'Yes' : 'No';
             })->implode("\n");
@@ -146,9 +144,7 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
             $examAttemptRemain = collect($student->allPaidCourses)->map(function ($course) {
                 $today = now();
                 $adjustedExpiryDate = \Carbon\Carbon::parse($course->adjusted_expiry);
-                $isExpired = ($adjustedExpiryDate < $today) ||
-                            ($course->exam_attempt_remain === 0) ||
-                            ($course->exam_remark === '1');
+                $isExpired = ($adjustedExpiryDate < $today);
 
                 return $isExpired ? '' : $course->exam_attempt_remain;
             })->implode("\n");
@@ -171,16 +167,16 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
             // ];
 
             $baseData = [
-                $student['roll_no'],
+                // $student['roll_no'],
                 $student['name'] . ' ' . $student['last_name'],
-                $student['identity_doc_type'],
-                $student['identity_doc_number'],
-                $student['is_verified'],
+                // $student['identity_doc_type'],
+                // $student['identity_doc_number'],
+                // $student['is_verified'],
                 $coursesTitles ?: '',
                 $coursesStartDates ?: '',
                 $coursesExpireDates ?: '',
-                $coursesPurchasePrices ?: '',
-                $coursesExamResults ?: '',
+                // $coursesPurchasePrices ?: '',
+                // $coursesExamResults ?: '',
             ];
             
             if (!in_array(auth()->user()->role, ['admin', 'superadmin'])) {
@@ -188,8 +184,8 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
                 $baseData[] = $coursesExpiries ?: '';
             }
             
-            $baseData[] = $examAttemptRemain ?: '';
-            $baseData[] = $student->instituteAffiliation ?? 'N';
+            // $baseData[] = $examAttemptRemain ?: '';
+            // $baseData[] = $student->instituteAffiliation ?? 'N';
 
 
             
@@ -203,20 +199,20 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
     public function headings(): array
     {
         return [
-            'Roll No.',
+            // 'Roll No.',
             'Student Name',
-            'Identity Type',
-            'Identity Number',
-            'Verification Status',
+            // 'Identity Type',
+            // 'Identity Number',
+            // 'Verification Status',
             'Course Name',
             'Purchase Date',
             'Expire Date',
-            'Purchase Price',
-            'Exam Remark',
+            // 'Purchase Price',
+            // 'Exam Remark',
             // 'Is Expired',
             // 'Is Completed',
-            'Exam Attempt Remain',
-            'Institute Affiliation',
+            // 'Exam Attempt Remain',
+            // 'Institute Affiliation',
         ];
         
         if (!in_array(auth()->user()->role, ['admin', 'superadmin'])) {
@@ -323,7 +319,7 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
                     'bold' => true,
                 ],
             ],
-            6 => [
+            5 => [
                 'font' => [
                     'bold' => true,
                 ],
@@ -343,14 +339,14 @@ class StudentsReportExport implements FromCollection, WithHeadings, WithStyles, 
                 }
                 $sheet->setCellValue('A2', $durationText);
                 $sheet->setCellValue('A3', 'Total courses sales - ' . $this->totalCourseSales);
-                $sheet->setCellValue('A4', 'Total sales amount - € ' . $this->totalSalesAmount);
+                // $sheet->setCellValue('A4', 'Total sales amount - € ' . $this->totalSalesAmount);
             },
         ];
     }
     
     public function startCell(): string
     {
-        return 'A6';
+        return 'A5';
     }
 
 }

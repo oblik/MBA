@@ -106,9 +106,9 @@
                                 {{-- <label class="form-check-label" for="rememberme">Remember me</label> --}}
                                 {{-- <div class="invalid-feedback">You must agree before submitting.</div> --}}
                             </div>
-                            <div>
+                            {{-- <div>
                                 <a href="{{route('forgot-password')}}">Forgot your password?</a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div>
                             <!-- Button -->

@@ -108,7 +108,7 @@
                     @endif
                 @endif
 
-                @if(Auth::check())
+                {{-- @if(Auth::check())
                     @if(Auth::user()->role === 'instructor' || Auth::user()->role === 'sub-instructor')
                         <div class="me-2 ms-2">
                             <li class="dropdown d-inline-block position-static">
@@ -180,15 +180,13 @@
                                                 @endforeach
                                             @endif
                                         </ul>
-                                        {{-- <div class="border-top px-3 pt-3 pb-0">
-                                            <a href="#" class="text-link fw-semibold seeMore">See all Notifications</a>
-                                        </div> --}}
+                                     
                                     </div>
                                 </div>
                             </li>
                         </div>
                     @endif
-                @endif
+                @endif --}}
             
             
                 @auth
@@ -331,7 +329,7 @@
                         class="btn btn-outline-primary d-none shadow-sm me-2  d-lg-block text-nowrap">Log in</a>
 
                     <ul class="navbar-nav sign-btns-main">
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle sign-btns d-none d-lg-block customSignupStyle "
                                 href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-bs-display="static">Sign up</a>
@@ -346,19 +344,19 @@
                                 @php $where = ['teacher'=>'register','status'=>'0'];@endphp
                                 @php $isExists = is_exist('permission',$where);@endphp
                                 @if (isset($isExists) && is_numeric($isExists) && $isExists === 0)
-                                {{-- <li>
+                                <li>
                                     <a href="{{ route('instructor.signup') }}" class="dropdown-item">Lecturer</a>
-                                </li> --}}
+                                </li>
                                 @endif
-                                {{-- @php $where = ['institute'=>'register','status'=>'0'];@endphp
+                                @php $where = ['institute'=>'register','status'=>'0'];@endphp
                                 @php $isExists = is_exist('permission',$where);@endphp
                                 @if (isset($isExists) && is_numeric($isExists) && $isExists === 0)
                                 <li>
                                     <a href="{{ route('institute.signup') }}" class="dropdown-item">Institute</a>
                                 </li>
-                                @endif --}}
+                                @endif
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 @endauth
             </div>
