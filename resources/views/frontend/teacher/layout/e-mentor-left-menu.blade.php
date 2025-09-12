@@ -28,12 +28,12 @@
                     </li> --}}
 
                     <!-- Nav item -->
-                    <li class="nav-item e-men-9">
+                    {{-- <li class="nav-item e-men-9">
                         <a class="nav-link" href="{{route('sub-ementors-list')}}">
                             <i class="bi bi-person-fill nav-icon"></i>
                             Sub-Ementors
                         </a>
-                    </li>
+                    </li> --}}
 
                     <!-- Nav item -->
                     <li class="nav-item e-men-2">
@@ -52,12 +52,12 @@
                     </li>
 
                      <!-- Nav item -->
-                     <li class="nav-item e-men-8">
+                     {{-- <li class="nav-item e-men-8">
                         <a class="nav-link" href="{{route('e-mentor-students-exam')}}">
                             <i class="bi bi-journal-check nav-icon"></i>
                             Examination
                         </a>
-                    </li>  
+                    </li>   --}}
                     
                     <!-- Nav item -->
                     <li class="nav-item e-men-4">
@@ -67,12 +67,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item e-men-10">
+                    {{-- <li class="nav-item e-men-10">
                         <a class="nav-link" href="{{route('e-mentor-certificate')}}">
                             <i class="bi bi-journal-arrow-up me-1"></i>
                             Certificate
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- <li class="nav-item e-men-7">
                         <a class="nav-link" href="{{route('e-mentor-about-me')}}">

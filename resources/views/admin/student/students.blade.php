@@ -514,7 +514,7 @@
                 <option value="{{base64_encode($course->id)}}">{{$course->course_title}}</option>
                 @endforeach
               </select>
-            
+              <div class="invalid-feedback" id="course_error">Please select course.</div>
             </div>
           </div>
           <div class="modal-footer">

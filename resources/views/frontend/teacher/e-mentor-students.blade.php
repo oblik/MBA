@@ -79,10 +79,10 @@
                                                 <th>Name</th>
                                                 <th>Course</th>
                                                 <th>Enrolled</th>
-                                                <th>Exam</th>
+                                                {{-- <th>Exam</th>
                                                 @if (Auth::user()->role !== 'sub-instructor')
                                                     <th>Sub Ementor</th>
-                                                @endif
+                                                @endif --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -184,12 +184,12 @@
                                     } else if (userRole === 'sub-instructor') {
                                         courseUrl = `/sub-ementor/sub-e-mentor-students-exam-details/${userId}/${courseId}/${scmId}`;
                                     }
-                                    courseTitles.push(`${index + 1}. <a href="${courseUrl}">${course.course_title}</a><hr style="color:#fff">`);
+                                    courseTitles.push(`${index + 1}. <span>${course.course_title}</span><hr style="color:#fff">`);
                                 });
                             }
                             return courseTitles.join('');
                         },
-                        width: '30%'
+                        width: '50%'
                     },
                     {
                         data: null,
@@ -208,135 +208,135 @@
                         },
                         width: '20%'
                     },
-                    {
-                        data: null,
-                        render: function(row) {
-                            var courseTitles = [];
-                            let badge = '';
-                            // if (row.allPaidCourses && row.allPaidCourses.length > 0) {
-                            //     row.allPaidCourses.forEach(function(course, index) {
-                            //         let examData = row.examResults && row.examResults[course.scmId] ? row.examResults[course.scmId] : null;
-                            //         badge = examData
-                            //             ? `<span class="badge bg-${examData.color}">${examData.result} ${examData.percent ? examData.percent + '%' : ''}</span>`
-                            //             : `<span class="badge bg-primary">Not Attempt</span>`;
-                            //         courseTitles += `${badge}<hr>`;
-                            //     });
-                            // }
-                            if (row.allPaidCourses && row.allPaidCourses.length > 0) {
-                                row.allPaidCourses.forEach(function(course, index) {
-                                    let examData = row.examResults && row.examResults[course.scmId] ? row.examResults[course.scmId] : null;
-                                    badge = examData
-                                        ? `<span class="badge bg-${examData.color}">${examData.result} ${examData.percent ? examData.percent + '%' : ''}</span>`
-                                        : `<span class="badge bg-primary">Not Attempt</span>`;
-                                        courseTitles += `<div class="course-badge" style="height:22.5px;">${badge}</div><hr style="color:#fff">`;
-                                });
-                            }
+                    // {
+                    //     data: null,
+                    //     render: function(row) {
+                    //         var courseTitles = [];
+                    //         let badge = '';
+                    //         // if (row.allPaidCourses && row.allPaidCourses.length > 0) {
+                    //         //     row.allPaidCourses.forEach(function(course, index) {
+                    //         //         let examData = row.examResults && row.examResults[course.scmId] ? row.examResults[course.scmId] : null;
+                    //         //         badge = examData
+                    //         //             ? `<span class="badge bg-${examData.color}">${examData.result} ${examData.percent ? examData.percent + '%' : ''}</span>`
+                    //         //             : `<span class="badge bg-primary">Not Attempt</span>`;
+                    //         //         courseTitles += `${badge}<hr>`;
+                    //         //     });
+                    //         // }
+                    //         if (row.allPaidCourses && row.allPaidCourses.length > 0) {
+                    //             row.allPaidCourses.forEach(function(course, index) {
+                    //                 let examData = row.examResults && row.examResults[course.scmId] ? row.examResults[course.scmId] : null;
+                    //                 badge = examData
+                    //                     ? `<span class="badge bg-${examData.color}">${examData.result} ${examData.percent ? examData.percent + '%' : ''}</span>`
+                    //                     : `<span class="badge bg-primary">Not Attempt</span>`;
+                    //                     courseTitles += `<div class="course-badge" style="height:22.5px;">${badge}</div><hr style="color:#fff">`;
+                    //             });
+                    //         }
 
-                            return courseTitles;
-                        },
-                        width: '10%'
-                    }
+                    //         return courseTitles;
+                    //     },
+                    //     width: '10%'
+                    // }
                 ];
 
                 // Add sub-mentor dropdown for each course individually
-                if (userRole === 'instructor') {
-                    columns.push({
-                        data: null,
-                        render: function(data, type, full, row) {
+                // if (userRole === 'instructor') {
+                //     columns.push({
+                //         data: null,
+                //         render: function(data, type, full, row) {
                             
-                            const userId = btoa(data.id);
+                //             const userId = btoa(data.id);
 
-                            // Ensure courses exist before rendering dropdown
-                            if (data.allPaidCourses && data.allPaidCourses.length > 0) {
-                                return data.allPaidCourses.map(function(course, index) {
-                                    const assignedSubEmentorId = course.assigned_sub_mentor_id;
-                                    const isDropdownVisible = !course.exam_remark == '1' && course.exam_attempt_remain > 0 && new Date(course.adjusted_expiry) >= new Date();
+                //             // Ensure courses exist before rendering dropdown
+                //             if (data.allPaidCourses && data.allPaidCourses.length > 0) {
+                //                 return data.allPaidCourses.map(function(course, index) {
+                //                     const assignedSubEmentorId = course.assigned_sub_mentor_id;
+                //                     const isDropdownVisible = !course.exam_remark == '1' && course.exam_attempt_remain > 0 && new Date(course.adjusted_expiry) >= new Date();
                                     
-                                    let message = '';
+                //                     let message = '';
 
-                                    if (course.exam_remark == '1') {
-                                        const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
-                                        if (ementor) {
-                                            message = `${ementor.user.name} ${ementor.user.last_name}`;
-                                        } else {
-                                            message = '<p style="height:30px" class="mt-4"><span class="badge bg-warning">sub-mentor not assigned.<span></p>';
-                                        }
+                //                     if (course.exam_remark == '1') {
+                //                         const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
+                //                         if (ementor) {
+                //                             message = `${ementor.user.name} ${ementor.user.last_name}`;
+                //                         } else {
+                //                             message = '<p style="height:30px" class="mt-4"><span class="badge bg-warning">sub-mentor not assigned.<span></p>';
+                //                         }
 
-                                    } else if (course.exam_attempt_remain === 0) {
-                                        const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
-                                        if (ementor) {
-                                            message = `${ementor.user.name} ${ementor.user.last_name}`;
-                                        } else {
-                                            message = '<p style="height:30px" class="mt-4" ><span class="badge bg-warning">sub-mentor not assigned.<span></p>';
-                                        }
+                //                     } else if (course.exam_attempt_remain === 0) {
+                //                         const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
+                //                         if (ementor) {
+                //                             message = `${ementor.user.name} ${ementor.user.last_name}`;
+                //                         } else {
+                //                             message = '<p style="height:30px" class="mt-4" ><span class="badge bg-warning">sub-mentor not assigned.<span></p>';
+                //                         }
 
-                                    } else if (new Date(course.adjusted_expiry) < new Date()) {
-                                        const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
-                                        if (ementor) {
-                                            message = `${ementor.user.name} ${ementor.user.last_name}`;
-                                        } else {
-                                            message = '<p style="height:30px" class="mt-4" ><span class="badge bg-warning">sub-mentor not assigned.<span></p>';
-                                        }
+                //                     } else if (new Date(course.adjusted_expiry) < new Date()) {
+                //                         const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
+                //                         if (ementor) {
+                //                             message = `${ementor.user.name} ${ementor.user.last_name}`;
+                //                         } else {
+                //                             message = '<p style="height:30px" class="mt-4" ><span class="badge bg-warning">sub-mentor not assigned.<span></p>';
+                //                         }
 
-                                    } else if (course.exam_remark == '0' && course.exam_attempt_remain == 1) {
-                                        const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
-                                        if (ementor) {
-                                            const options = subEmentorsData.map(ementor => {
-                                                return `<option value="${ementor.user.id}" ${ementor.user.id == assignedSubEmentorId ? 'selected' : ''}>
-                                                            ${ementor.user.name} ${ementor.user.last_name}
-                                                        </option>`;
-                                            }).join('');
+                //                     } else if (course.exam_remark == '0' && course.exam_attempt_remain == 1) {
+                //                         const ementor = subEmentorsData.find(ementor => ementor.user.id == assignedSubEmentorId);
+                //                         if (ementor) {
+                //                             const options = subEmentorsData.map(ementor => {
+                //                                 return `<option value="${ementor.user.id}" ${ementor.user.id == assignedSubEmentorId ? 'selected' : ''}>
+                //                                             ${ementor.user.name} ${ementor.user.last_name}
+                //                                         </option>`;
+                //                             }).join('');
 
-                                            return ` 
-                                                <select class="form-select submentor-select mt-3 w-auto" 
-                                                    data-user-id="${userId}" 
-                                                    data-course-id="${course.course_id}" 
-                                                    data-scm-id="${course.scmId}">
-                                                    <option value="">Assign Sub-Mentor</option>
-                                                    ${options}
-                                                </select>`;
-                                        } else {
-                                            const options = subEmentorsData.map(ementor => {
-                                                const selected = ementor.user.id == assignedSubEmentorId ? 'selected' : '';
-                                                return `<option value="${ementor.user.id}" ${selected}>${ementor.user.name} ${ementor.user.last_name}</option>`;
-                                            }).join('');
+                //                             return ` 
+                //                                 <select class="form-select submentor-select mt-3 w-auto" 
+                //                                     data-user-id="${userId}" 
+                //                                     data-course-id="${course.course_id}" 
+                //                                     data-scm-id="${course.scmId}">
+                //                                     <option value="">Assign Sub-Mentor</option>
+                //                                     ${options}
+                //                                 </select>`;
+                //                         } else {
+                //                             const options = subEmentorsData.map(ementor => {
+                //                                 const selected = ementor.user.id == assignedSubEmentorId ? 'selected' : '';
+                //                                 return `<option value="${ementor.user.id}" ${selected}>${ementor.user.name} ${ementor.user.last_name}</option>`;
+                //                             }).join('');
 
 
-                                            return ` 
-                                                <select class="form-select submentor-select mt-3 w-auto" data-user-id="${userId}" data-course-id="${course.course_id}" data-scm-id="${course.scmId}">
-                                                    <option value="">Assign Sub-Mentor</option>
-                                                    ${options}
-                                                </select>`;
-                                        }
-                                    }
+                //                             return ` 
+                //                                 <select class="form-select submentor-select mt-3 w-auto" data-user-id="${userId}" data-course-id="${course.course_id}" data-scm-id="${course.scmId}">
+                //                                     <option value="">Assign Sub-Mentor</option>
+                //                                     ${options}
+                //                                 </select>`;
+                //                         }
+                //                     }
                                     
-                                    // if (!isDropdownVisible) {
-                                    //     return `<p class="text-muted mt-3" style="padding:0.5rem 3rem 0.5rem 1rem"> <span class="badge bg-warning">${message} </span></p>`;
-                                    // }
-                                                if (!isDropdownVisible) {
-                                        return `<p class="message-badge"> <span class="badge bg-warning">${message} </span></p>`;
-                                    }
+                //                     // if (!isDropdownVisible) {
+                //                     //     return `<p class="text-muted mt-3" style="padding:0.5rem 3rem 0.5rem 1rem"> <span class="badge bg-warning">${message} </span></p>`;
+                //                     // }
+                //                                 if (!isDropdownVisible) {
+                //                         return `<p class="message-badge"> <span class="badge bg-warning">${message} </span></p>`;
+                //                     }
                                     
                                     
-                                    const options = subEmentorsData.map(ementor => {
-                                        const selected = ementor.user.id == assignedSubEmentorId ? 'selected' : '';
-                                        return `<option value="${ementor.user.id}" ${selected}>${ementor.user.name} ${ementor.user.last_name}</option>`;
-                                    }).join('');
+                //                     const options = subEmentorsData.map(ementor => {
+                //                         const selected = ementor.user.id == assignedSubEmentorId ? 'selected' : '';
+                //                         return `<option value="${ementor.user.id}" ${selected}>${ementor.user.name} ${ementor.user.last_name}</option>`;
+                //                     }).join('');
 
 
-                                    return ` 
-                                        <select class="form-select submentor-select mt-3 w-auto" data-user-id="${userId}" data-course-id="${course.course_id}" data-scm-id="${course.scmId}">
-                                            <option value="">Assign Sub-Mentor</option>
-                                            ${options}
-                                        </select>`;
-                                }).join('');
-                            } else {
-                                return 'No courses available';
-                            }
-                        },
-                        width:'30%'
-                    });
-                }
+                //                     return ` 
+                //                         <select class="form-select submentor-select mt-3 w-auto" data-user-id="${userId}" data-course-id="${course.course_id}" data-scm-id="${course.scmId}">
+                //                             <option value="">Assign Sub-Mentor</option>
+                //                             ${options}
+                //                         </select>`;
+                //                 }).join('');
+                //             } else {
+                //                 return 'No courses available';
+                //             }
+                //         },
+                //         width:'30%'
+                //     });
+                // }
 
                 // Initialize DataTable
                 $(".studentListRemark").DataTable({

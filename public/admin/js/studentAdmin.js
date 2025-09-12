@@ -878,9 +878,13 @@ $(document).ready(function () {
     
     $("#CoursePurchaseSubmit").on("click", function (event) {
         event.preventDefault(); //
+        $("#course_error").hide();
         var student_id = $(".student_id").val();
         var course_id = $(".course_id").val();
-
+        if(course_id == ''){
+            $("#course_error").show();
+            return;
+        }
         $.ajax({
             url: baseUrl + "/admin/student-course-purchase",
             type: "post",

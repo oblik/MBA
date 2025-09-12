@@ -10,7 +10,7 @@
                     <div class="mb-2 mb-lg-0">
                         <h1 class="mb-0 h2 fw-bold">Edit Admin</h1>
                         <!-- Breadcrumb -->
-                        <nav aria-label="breadcrumb">
+                        {{-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="{{route('dashboard')}}">Dashboard</a>
@@ -20,12 +20,12 @@
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit Admin </li>
                             </ol>
-                        </nav>
+                        </nav> --}}
                     </div>
                     <!-- button -->
-                    <div>
+                    {{-- <div>
                         <a href="{{route('admin.index')}}" class="btn btn-primary me-2">Back</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@
                                 <div class="col-12">
                                     <button class="btn btn-primary editAdmin" type="submit" >Save</button>
                                     {{-- <button type="button" class="btn btn-outline-primary ms-2" data-bs-dismiss="offcanvas" aria-label="Close">Close</button> --}}
-                                    <a href="{{route('admin.index')}}" class="btn btn-outline-primary ms-2">Back</a>
+                                    {{-- <a href="{{route('admin.index')}}" class="btn btn-outline-primary ms-2">Back</a> --}}
 
                                 </div>
                             </form>

@@ -272,9 +272,9 @@
                                 var url = baseUrl + "e-mentor-course-details/" + btoa(data.id) ;
 
                                 return '<div class="d-flex align-items-center">' +
-                                    '<div><a href="'+url+'"><img src="' + img + '" alt="course" class="rounded img-4by3-lg"></a></div>' +
+                                    '<div><img src="' + img + '" alt="course" class="rounded img-4by3-lg"></div>' +
                                     '<div class="ms-3">' +
-                                    '<h4 class="mb-1 h5"><a href="'+url+'" class="text-inherit color-blue text-wrap-title">' + data.course_title + '</a></h4>' +
+                                    '<h4 class="mb-1 h5"><span class="text-inherit color-blue text-wrap-title">' + data.course_title + '</span></h4>' +
                                     '<ul class="list-inline fs-6 mb-0">' +
                                     '<li class="list-inline-item">' +
                                     '<b>MQF/EQF Level </b>: ' + (data.mqfeqf_level ? data.mqfeqf_level    : ' NA  ') +

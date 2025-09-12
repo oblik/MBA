@@ -41,12 +41,12 @@ class EmentorProfile extends Model
             ->with(['CourseModule' => function ($query) {
                 $query->with(['OrderModule' => function ($orderQuery) {
                     $orderQuery->where('status', '0')
-                    ->whereHas('user.studentDocument', function ($studentDocQuery) {
-                        $studentDocQuery->where('identity_is_approved', 'Approved')
-                                        ->where('edu_is_approved', 'Approved')
-                                        ->where('english_score','>=','10')
-                                        ->whereNotNull('resume_file');
-                    })
+                    // ->whereHas('user.studentDocument', function ($studentDocQuery) {
+                    //     $studentDocQuery->where('identity_is_approved', 'Approved')
+                    //                     ->where('edu_is_approved', 'Approved')
+                    //                     ->where('english_score','>=','10')
+                    //                     ->whereNotNull('resume_file');
+                    // })
                     ->whereHas('user.userData', function ($userDataQuery) {
                         $userDataQuery->where('is_active', 'Active');
                     })->with([
@@ -59,12 +59,12 @@ class EmentorProfile extends Model
                     ]);
                 }])->withCount(['OrderModule as order_count' => function ($orderQuery) {
                     $orderQuery->where('status', '0')
-                    ->whereHas('user.studentDocument', function ($studentDocQuery) {
-                        $studentDocQuery->where('identity_is_approved', 'Approved')
-                                        ->where('edu_is_approved', 'Approved')
-                                        ->where('english_score','>=','10')
-                                        ->whereNotNull('resume_file');
-                    })
+                    // ->whereHas('user.studentDocument', function ($studentDocQuery) {
+                    //     $studentDocQuery->where('identity_is_approved', 'Approved')
+                    //                     ->where('edu_is_approved', 'Approved')
+                    //                     ->where('english_score','>=','10')
+                    //                     ->whereNotNull('resume_file');
+                    // })
                     ->whereHas('user.userData', function ($userDataQuery) {
                         $userDataQuery->where('is_active', 'Active');
                     })->with([
