@@ -64,13 +64,13 @@ class AuthenticatedSessionController extends Controller
             $request->authenticate();
             $request->session()->regenerate();
             
-            $user = DB::table('users')
-                ->where('email', $request->email)
-                ->where('role', 'user')
-                ->first();
+            // $user = DB::table('users')
+            //     ->where('email', $request->email)
+            //     ->where('role', 'user')
+            //     ->first();
     
-            if(isset($user) && !empty($user))
-            {
+            // if(isset($user) && !empty($user))
+            // {
                 // if($user->otp_verified_at == null || empty($user->otp_verified_at)){
                 //     Auth::logout();
                 //     $email = $request->email;
@@ -121,19 +121,19 @@ class AuthenticatedSessionController extends Controller
                 //     }
                 // }else
 
-                if($user->email_verified_at == null || empty($user->email_verified_at)){
-                    Auth::logout();
-                    $dyc_id = Crypt::encrypt($user->id);
-                    $email = $request->email;
-                    $link =  env('APP_URL') . "/verfiy-mail/" . $dyc_id;
-                    $unsubscribeRoute = url('/unsubscribe/'.base64_encode($email));
-                    mail_send(32, ['#Name#', '#Link#', '#unsubscribeRoute#'], [$user->name." ".$user->last_name, $link, $unsubscribeRoute], $email);
-                    $url ='email-id-verification';
-                    $email = $request->email;
-                    session(['statusEmail' => $request->email]);
+                // if($user->email_verified_at == null || empty($user->email_verified_at)){
+                //     Auth::logout();
+                //     $dyc_id = Crypt::encrypt($user->id);
+                //     $email = $request->email;
+                //     $link =  env('APP_URL') . "/verfiy-mail/" . $dyc_id;
+                //     $unsubscribeRoute = url('/unsubscribe/'.base64_encode($email));
+                //     mail_send(32, ['#Name#', '#Link#', '#unsubscribeRoute#'], [$user->name." ".$user->last_name, $link, $unsubscribeRoute], $email);
+                //     $url ='email-id-verification';
+                //     $email = $request->email;
+                //     session(['statusEmail' => $request->email]);
 
-                    return redirect()->intended($url)->with('statusEmail', $email);
-                }else{
+                //     return redirect()->intended($url)->with('statusEmail', $email);
+                // }else{
 
                     // if (session()->has('intended_action_wishlist')){
                     //     $response = App::call('App\Http\Controllers\CartController@addWishlist');
@@ -170,8 +170,8 @@ class AuthenticatedSessionController extends Controller
                     //     return redirect()->intended('checkout')->with('formData', $formData);
                     // }
                     // return redirect('/');
-                }
-            }
+                // }
+            // }
 
         
 
@@ -179,7 +179,7 @@ class AuthenticatedSessionController extends Controller
 
                 $url = '';
                     if ($request->user()->role === 'admin' || $request->user()->role === "superadmin" || $request->user()->role === "sales" ) { 
-                        $url = 'admin/admin';
+                        $url = 'admin/students';
                     } elseif ($request->user()->role === 'user') {
                         $url = 'student/student-my-learning';
                     } elseif ($request->user()->role === 'instructor') {

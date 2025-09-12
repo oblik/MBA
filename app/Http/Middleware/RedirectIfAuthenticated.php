@@ -32,7 +32,7 @@ class RedirectIfAuthenticated
                 } elseif (Auth::check() && Auth::user()->role === 'admin') {
                     return redirect('admin/admin');
                 } elseif (Auth::check() && Auth::user()->role === 'superadmin') {
-                    return redirect('admin/admin');
+                    return redirect('admin/students');
                 } elseif (Auth::check() && Auth::user()->role === 'sales') {
                     return redirect('admin/admin');
                 }
