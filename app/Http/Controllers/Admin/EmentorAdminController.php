@@ -318,7 +318,7 @@ class EmentorAdminController extends Controller
                     if (isset($updateUserProfile) && $updateUserProfile === FALSE) {
                         return json_encode(['code' => 201, 'title' => "Something Went Wrong1", 'message' => 'Please Try Again', "icon" => generateIconPath("error")]);
                     }
-                    return json_encode(['code' => 200, 'title' => 'Successfully Updated', "message" => "Ementor details updated successfully", "icon" => generateIconPath("success")]);
+                    return json_encode(['code' => 200, 'title' => 'Successfully Updated', "message" => "Lecturer details updated successfully", "icon" => generateIconPath("success")]);
                 }
             } else {
 

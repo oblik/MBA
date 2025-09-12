@@ -773,8 +773,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles:admin']], fun
         Route::post('/add-course-section', 'updateSection');
         Route::view('section-edit', 'admin/course/section-edit');
         Route::get('/section-course-get-data/{cat?}/{edit?}', 'sectionList')->name('admin.sectionList');
-        Route::post('/section-search', 'searchSection');
-        Route::post('/section-already-added', 'sectionAlreadyAdded');
+        // Route::post('/section-search', 'searchSection');
+        Route::match(['get', 'post'],'/section-search', 'searchSection');
+        // Route::post('/section-already-added', 'sectionAlreadyAdded');
+        Route::match(['get', 'post'],'/section-already-added', 'sectionAlreadyAdded');
+
 
 
         Route::get('section-orientation-get-data/', 'sectionList')->name('admin.sectionList');
