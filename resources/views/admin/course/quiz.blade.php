@@ -23,7 +23,7 @@
                             <span class="fs-5 counts"></span>
                         </h1>
                         <!-- Breadcrumb  -->
-                        <nav aria-label="breadcrumb">
+                        {{-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="{{route('dashboard')}}">Dashboard</a>
@@ -31,7 +31,7 @@
                                 <li class="breadcrumb-item"><a href="#">Quiz</a></li>
                                 <!-- <li class="breadcrumb-item active" aria-current="page">All Admin</li> -->
                             </ol>
-                        </nav>
+                        </nav> --}}
                     </div>
                     <div class="nav btn-group" role="tablist">
 

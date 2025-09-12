@@ -759,7 +759,7 @@ if (!function_exists('is_enrolled')) {
                     ->where('orders.status', '0');
             })
             ->where('users.is_active', 'Active')
-            ->where('users.is_verified', 'Verified')
+            // ->where('users.is_verified', 'Verified')
             ->where('student_course_master.is_deleted', 'No')
             ->where('block_status', '0')
             ->where('orders.status', '0');
