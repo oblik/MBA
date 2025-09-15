@@ -588,7 +588,7 @@ function videoList(action= '') {
                             var name = data.video_title != '' ? data.video_title : '';                         
                             var bn_video_url_id = data.bn_video_url_id != '' ? data.bn_video_url_id : '';                         
                             return (
-                                "<div class='d-flex align-items-center' ><div class=''><a href='https://iframe.mediadelivery.net/embed/253882/"+bn_video_url_id+"?autoplay=false&loop=false&muted=true&preload=false&responsive=true' target='_blank'><span class='icon-shape bg-blue color-green text-white icon-xs rounded-circle'><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='currentColor' class='bi bi-play-fill' viewBox='0 0 16 16'><path d='m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z'></path></svg></span></a></div><div class='ms-2 text-wrap-title'>"+name+"</div></div>"
+                                "<div class='d-flex align-items-center' ><div class=''><a href='https://iframe.mediadelivery.net/embed/491943/"+bn_video_url_id+"?autoplay=false&loop=false&muted=true&preload=false&responsive=true' target='_blank'><span class='icon-shape bg-blue color-green text-white icon-xs rounded-circle'><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='currentColor' class='bi bi-play-fill' viewBox='0 0 16 16'><path d='m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z'></path></svg></span></a></div><div class='ms-2 text-wrap-title'>"+name+"</div></div>"
                             );
                         },
                         width:"30%"
